@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cricket Score Oracle</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='cricket-favicon.ico') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='custom-styles.css') }}"> -->
+        <script src="https://kit.fontawesome.com/7f5b6341f3.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+        <style>
+            /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f2f2f2;
+    color: #333333;
+    
+}
+
+/* Container styles */
+/* Container styles */
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Fixed Images styles */
+.fixed-images {
+    display: flex;
+    justify-content: space-between;
+    width: 70%; /* Adjust the width based on your preference */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 20px; /* Adjust the margin based on your preference */
+}
+
+.fixed-image-container {
+    width: 45px; /* Adjust the width based on your preference */
+    height: 45px; /* Adjust the height based on your preference */
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px; /* Adjust the margin based on your preference */
+}
+
+.fixed-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
+/* Prediction Area styles */
+.prediction-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cricket Banner styles */
+.cricket-banner-left,
+.cricket-banner-right {
+    width: 45%;
+    display: flex;
+}
+
+/* Slider Frame styles */
+.slider-frame {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+/* Slide Images styles */
+
+
+
+.image-width {
+    width: 100%;
+    height: auto;
+}
+
+/* Prediction Form styles */
+.div2 {
+    width: 45%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.customButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: #219d54;
+}
+
+/* Cricket Banner styles */
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    background-color: #34495e;
+    color: #ffffff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.contact {
+    margin-top: 5px;
+}
+
+.contact-icon {
+    margin: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-description {
+    margin-top: 5px;
+}
+
+        </style>
+        <script>
+            function updateBowlingTeamOptions() {
+                var battingTeam = document.getElementById('batting-team');
+                var bowlingTeam = document.getElementById('bowling-team');
+                
+                // Clear previous options
+                bowlingTeam.innerHTML = '';
+
+                // Create a default option
+                var defaultOption = document.createElement('option');
+                defaultOption.value = 'none';
+                defaultOption.text = '--- Choose Bowling Team ---';
+                bowlingTeam.appendChild(defaultOption);
+
+                // Add options excluding the selected batting team
+                for (var i = 0; i < battingTeam.options.length; i++) {
+                    if (battingTeam.options[i].value !== battingTeam.value) {
+                        var option = document.createElement('option');
+                        option.value = battingTeam.options[i].value;
+                        option.text = battingTeam.options[i].text;
+                        bowlingTeam.appendChild(option);
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class='heading_first'>Cricket Score Oracle for </span><span class="heading_second">T20 Leagues</span></h2>
+            <div class='description'>
+    			<p>Your Ultimate Cricket Score Predictor!</p>
+    		</div>
+    	</div>
+
+        <!-- Prediction Area -->
+        <div class="prediction-area">
+
+            <!-- Cricket Banner - 1 -->
+            <div class='cricket-banner'>
+
+                <div class="slider-frame">
+                    <div class="slide-images-up">
+
+                        <!-- Image-1 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/csk.png" alt="Team 1">
+                        </div>
+                        <!-- Image-2 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/dc.png" alt="Team 2">
+                        </div>
+                        <!-- Image-3 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/kkr.jpg" alt="Team 3">
+                        </div>
+                        <!-- Image-4 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/kxip.png" alt="Team 4">
+                        </div>
+                        <!-- Image-5 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/mi.jpg" alt="Team 5">
+                        </div>
+                        <!-- Image-6 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/rr.png" alt="Team 6">
+                        <!-- Image-7 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/srh.png" alt="Team 7">
+                        </div>
+                        <!-- Image-8 -->
+                        <div class="image-container">
+                            <img class="image-width" src="/IPL-First-Innings-Score-Prediction-Deployment-master/static/rcb.png" alt="Team 8">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Prediction Form -->
+            <div class='div2'>
+                <form action="{{ url_for('oracle') }}" method="POST">
+                    <!-- Batting Team Dropdown -->
+                    <select class="form-input align-center" name="batting-team" id="batting-team" onchange="updateBowlingTeamOptions()">
+                        <option value="none">--- Choose Batting Team ---</option>
+                        <option value="Team 1">Team 1</option>
+                        <option value="Team 2">Team 2</option>
+                        <option value="Team 3">Team 3</option>
+                        <option value="Team 4">Team 4</option>
+                        <option value="Team 5">Team 5</option>
+                        <option value="Team 6">Team 6</option>
+                        <option value="Team 7">Team 7</option>
+                        <option value="Team 8">Team 8</option>
+                    </select><br>
+                    <!-- Bowling Team Dropdown -->
+                    <select class="form-input align-center" name="bowling-team" id="bowling-team">
+                        <option value="none">--- Choose Bowling Team ---</option>
+                    </select><br>
+                    <input class="form-input" type="text" name="overs" placeholder="Overs (>= 5.0) e.g., 7.2"><br>
+                    <input class="form-input" type="text" name="runs" placeholder="Runs e.g., 64"><br>
+                    <input class="form-input" type="text" name="wickets" placeholder="Wickets e.g., 4"><br>
+                    <input class="form-input" type="text" name="runs_in_prev_5" placeholder="Runs in previous 5 Overs e.g., 42"><br>
+                    <input class="form-input" type="text" name="wickets_in_prev_5" placeholder="Wickets in previous 5 Overs e.g., 3"><br>
+
+                    <input type="submit" class="customButton" value="Get Score Prediction">
+                </form>
+            </div>
+
+            
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+       <div class='footer'>
+           <div class="contact">
+               <a target="_blank" href="https://github.com/yourusername/cricket-score-oracle"><i class="fab fa-github fa-lg contact-icon"></i></a>
+               <a target="_blank" href="https://www.linkedin.com/in/yourusername"><i class="fab fa-linkedin fa-lg contact-icon"></i></a>
+           </div>
+           <p class='footer-description'>Created with 💙 by Your Name.</p>
+       </div>
+
+    </body>
+</html>

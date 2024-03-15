@@ -2,14 +2,10 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
-import os
+
 # Load the Random Forest CLassifier model
-# Load the trained Decision Tree model
-model_file_path = os.path.join(os.path.dirname(__file__), 'ipl1.pkl')
-
-
-with open(model_file_path, 'rb') as model_file:
-    regressor = pickle.load(model_file)
+filename = 'first-innings-score-lr-model.pkl'
+regressor = pickle.load(open(filename, 'rb'))
 
 app = Flask(__name__)
 
